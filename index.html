@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart City 360</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">SC</div><div><b>Smart City</b><span>360 Platform</span></div></div>
+    <nav>
+      <button class="nav active" data-section="overview">◈ <span>Overview</span></button>
+      <button class="nav" data-section="traffic">⌁ <span>Traffic</span></button>
+      <button class="nav" data-section="parking">▦ <span>Parking</span></button>
+      <button class="nav" data-section="safety">✦ <span>Public Safety</span></button>
+      <button class="nav" data-section="waste">♻ <span>Waste</span></button>
+      <button class="nav" data-section="energy">⚡ <span>Energy</span></button>
+      <button class="nav" data-section="devices">◉ <span>IoT Devices</span></button>
+    </nav>
+    <div class="side-bottom"><div class="live-dot"></div> System operational</div>
+  </aside>
+
+  <main>
+    <header>
+      <div>
+        <div class="eyebrow">URBAN INTELLIGENCE</div>
+        <h1 id="title">City Overview</h1>
+      </div>
+      <div class="header-actions"><span class="pill"><i></i> Live network</span><button class="icon-btn">⌕</button><div class="avatar">P</div></div>
+    </header>
+
+    <section id="overview" class="section active">
+      <div class="hero">
+        <div><div class="hero-kicker">AI + IoT COMMAND CENTER</div><h2>One dashboard for a smarter city.</h2><p>Monitor infrastructure, mobility, safety and resources in real time.</p><button class="primary" onclick="showSection('devices')">View live devices →</button></div>
+        <div class="city-orbit"><div class="orbit o1"></div><div class="orbit o2"></div><div class="city-core">360°<small>LIVE CITY</small></div><span class="node n1">Traffic</span><span class="node n2">Safety</span><span class="node n3">Energy</span><span class="node n4">Parking</span></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span>CONNECTED DEVICES</span><strong>1,248</strong><em class="up">+8.4%</em></div>
+        <div class="stat"><span>ACTIVE ALERTS</span><strong>07</strong><em class="warn">2 critical</em></div>
+        <div class="stat"><span>PARKING AVAILABILITY</span><strong>68%</strong><em class="up">+4.2%</em></div>
+        <div class="stat"><span>ENERGY SAVED</span><strong>18.6%</strong><em class="up">this month</em></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel"><div class="panel-head"><div><h3>City Activity</h3><span>Sensor events · last 24 hours</span></div><span class="select">24 hours⌄</span></div><canvas id="activityChart"></canvas></div>
+        <div class="panel alerts"><div class="panel-head"><div><h3>Priority Alerts</h3><span>Requires attention</span></div><button class="text-btn">View all</button></div>
+          <div class="alert critical"><b>⚠ Traffic congestion</b><span>Central Junction · 4 min ago</span><small>Critical</small></div>
+          <div class="alert"><b>● Parking occupancy high</b><span>Metro Square · 12 min ago</span><small>Monitor</small></div>
+          <div class="alert"><b>⚡ Energy anomaly detected</b><span>Zone 04 · 28 min ago</span><small>Review</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="traffic" class="section"><div class="page-card"><h2>Traffic Intelligence</h2><p>Live road conditions and AI-assisted congestion monitoring.</p><div class="big-metric">72 <small>/ 100 mobility score</small></div><div class="traffic-road"><span>North Avenue</span><b>LOW</b><span>Central Junction</span><b class="red">HIGH</b><span>Airport Road</span><b>MEDIUM</b></div></div></section>
+    <section id="parking" class="section"><div class="page-card"><h2>Smart Parking</h2><p>Monitor occupancy across connected parking zones.</p><div class="parking-grid"><div><strong>68%</strong><span>Overall occupancy</span></div><div><strong>1,426</strong><span>Spaces tracked</span></div><div><strong>457</strong><span>Spaces available</span></div></div></div></section>
+    <section id="safety" class="section"><div class="page-card"><h2>Public Safety</h2><p>Centralized incident and emergency monitoring.</p><div class="safety-row"><div class="safe">● 98.2% cameras online</div><div class="safe">● 14 emergency stations ready</div><div class="danger">! 2 incidents require review</div></div></div></section>
+    <section id="waste" class="section"><div class="page-card"><h2>Smart Waste</h2><p>Connected bins report fill levels for optimized collection.</p><div class="bin-grid"><div><strong>82%</strong><span>Zone A · route soon</span></div><div><strong>46%</strong><span>Zone B · normal</span></div><div><strong>91%</strong><span>Zone C · urgent</span></div></div></div></section>
+    <section id="energy" class="section"><div class="page-card"><h2>Energy Management</h2><p>Track consumption and identify unusual demand patterns.</p><canvas id="energyChart"></canvas></div></section>
+    <section id="devices" class="section"><div class="page-card"><div class="panel-head"><div><h2>IoT Device Network</h2><p>ESP32, cameras and sensor nodes connected to the platform.</p></div><span class="pill"><i></i> 1,248 online</span></div><table><thead><tr><th>DEVICE</th><th>ZONE</th><th>TYPE</th><th>STATUS</th><th>LAST UPDATE</th></tr></thead><tbody>
+      <tr><td>SC-TRF-204</td><td>Central</td><td>Traffic Sensor</td><td><b class="online">● Online</b></td><td>12 sec ago</td></tr>
+      <tr><td>SC-CAM-118</td><td>North</td><td>AI Camera</td><td><b class="online">● Online</b></td><td>18 sec ago</td></tr>
+      <tr><td>SC-PRK-077</td><td>Metro</td><td>Parking Node</td><td><b class="online">● Online</b></td><td>31 sec ago</td></tr>
+      <tr><td>SC-ENR-041</td><td>Zone 04</td><td>Energy Meter</td><td><b class="offline">● Warning</b></td><td>2 min ago</td></tr>
+    </tbody></table></div></section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
