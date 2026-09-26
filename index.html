@@ -2,70 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart City 360</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Smart City 360 — AI and IoT urban operations command center">
+<title>Smart City 360 | Urban Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="app">
-  <aside class="sidebar">
-    <div class="brand"><div class="logo">SC</div><div><b>Smart City</b><span>360 Platform</span></div></div>
-    <nav>
-      <button class="nav active" data-section="overview">◈ <span>Overview</span></button>
-      <button class="nav" data-section="traffic">⌁ <span>Traffic</span></button>
-      <button class="nav" data-section="parking">▦ <span>Parking</span></button>
-      <button class="nav" data-section="safety">✦ <span>Public Safety</span></button>
-      <button class="nav" data-section="waste">♻ <span>Waste</span></button>
-      <button class="nav" data-section="energy">⚡ <span>Energy</span></button>
-      <button class="nav" data-section="devices">◉ <span>IoT Devices</span></button>
-    </nav>
-    <div class="side-bottom"><div class="live-dot"></div> System operational</div>
-  </aside>
+<aside class="sidebar">
+  <div class="brand"><div class="logo">360</div><div><b>Smart City</b><span>Urban Command Center</span></div></div>
+  <div class="workspace"><span class="pulse"></span> CITY CORE <b>LIVE</b></div>
+  <nav>
+    <button class="nav active" data-section="overview">⌂ <span>Command Center</span></button>
+    <button class="nav" data-section="traffic">⇄ <span>Traffic AI</span></button>
+    <button class="nav" data-section="parking">▦ <span>Smart Parking</span></button>
+    <button class="nav" data-section="safety">◉ <span>Safety & Vision</span></button>
+    <button class="nav" data-section="waste">♻ <span>Waste Network</span></button>
+    <button class="nav" data-section="energy">ϟ <span>Energy Grid</span></button>
+    <button class="nav" data-section="devices">⌁ <span>IoT Fleet</span></button>
+  </nav>
+  <div class="sidebar-bottom"><div>API STATUS <strong>OPERATIONAL</strong></div><small>Last sync <span id="lastSync">now</span></small></div>
+</aside>
+<main>
+<header>
+  <div><div class="eyebrow">SMART CITY 360 / OPERATIONS</div><h1 id="title">Command Center</h1></div>
+  <div class="header-actions">
+    <button class="tool" id="searchBtn">⌕ <span>Search</span></button>
+    <button class="tool" id="themeBtn">◐</button>
+    <button class="notify" id="notifyBtn">♢<i>3</i></button>
+    <div class="avatar">P</div>
+  </div>
+</header>
 
-  <main>
-    <header>
-      <div>
-        <div class="eyebrow">URBAN INTELLIGENCE</div>
-        <h1 id="title">City Overview</h1>
-      </div>
-      <div class="header-actions"><span class="pill"><i></i> Live network</span><button class="icon-btn">⌕</button><div class="avatar">P</div></div>
-    </header>
+<section id="overview" class="section active">
+  <div class="hero">
+    <div><span class="hero-tag">AI + IoT URBAN INTELLIGENCE</span><h2>See your entire city from one command center.</h2><p>Live operational intelligence across mobility, public safety, energy, parking and connected infrastructure.</p>
+    <div class="hero-actions"><button class="primary" onclick="showSection('devices')">Open IoT fleet →</button><button class="secondary" id="simulateBtn">Simulate sensor event</button></div></div>
+    <div class="radar"><div class="scan"></div><div class="radar-ring r1"></div><div class="radar-ring r2"></div><div class="radar-core">360<small>LIVE</small></div><b class="radar-label l1">TRAFFIC</b><b class="radar-label l2">AI VISION</b><b class="radar-label l3">ENERGY</b><b class="radar-label l4">IOT</b></div>
+  </div>
 
-    <section id="overview" class="section active">
-      <div class="hero">
-        <div><div class="hero-kicker">AI + IoT COMMAND CENTER</div><h2>One dashboard for a smarter city.</h2><p>Monitor infrastructure, mobility, safety and resources in real time.</p><button class="primary" onclick="showSection('devices')">View live devices →</button></div>
-        <div class="city-orbit"><div class="orbit o1"></div><div class="orbit o2"></div><div class="city-core">360°<small>LIVE CITY</small></div><span class="node n1">Traffic</span><span class="node n2">Safety</span><span class="node n3">Energy</span><span class="node n4">Parking</span></div>
-      </div>
-      <div class="stats">
-        <div class="stat"><span>CONNECTED DEVICES</span><strong>1,248</strong><em class="up">+8.4%</em></div>
-        <div class="stat"><span>ACTIVE ALERTS</span><strong>07</strong><em class="warn">2 critical</em></div>
-        <div class="stat"><span>PARKING AVAILABILITY</span><strong>68%</strong><em class="up">+4.2%</em></div>
-        <div class="stat"><span>ENERGY SAVED</span><strong>18.6%</strong><em class="up">this month</em></div>
-      </div>
-      <div class="grid-2">
-        <div class="panel"><div class="panel-head"><div><h3>City Activity</h3><span>Sensor events · last 24 hours</span></div><span class="select">24 hours⌄</span></div><canvas id="activityChart"></canvas></div>
-        <div class="panel alerts"><div class="panel-head"><div><h3>Priority Alerts</h3><span>Requires attention</span></div><button class="text-btn">View all</button></div>
-          <div class="alert critical"><b>⚠ Traffic congestion</b><span>Central Junction · 4 min ago</span><small>Critical</small></div>
-          <div class="alert"><b>● Parking occupancy high</b><span>Metro Square · 12 min ago</span><small>Monitor</small></div>
-          <div class="alert"><b>⚡ Energy anomaly detected</b><span>Zone 04 · 28 min ago</span><small>Review</small></div>
-        </div>
-      </div>
-    </section>
+  <div class="stats">
+    <div class="stat"><span>CONNECTED DEVICES</span><strong id="devicesMetric">1,248</strong><em class="good">● 98.4% online</em></div>
+    <div class="stat"><span>ACTIVE ALERTS</span><strong id="alertsMetric">07</strong><em class="bad">2 critical</em></div>
+    <div class="stat"><span>MOBILITY SCORE</span><strong id="mobilityMetric">72</strong><em class="good">▲ 4.2%</em></div>
+    <div class="stat"><span>ENERGY EFFICIENCY</span><strong id="energyMetric">81.6%</strong><em class="good">▲ 6.8%</em></div>
+  </div>
 
-    <section id="traffic" class="section"><div class="page-card"><h2>Traffic Intelligence</h2><p>Live road conditions and AI-assisted congestion monitoring.</p><div class="big-metric">72 <small>/ 100 mobility score</small></div><div class="traffic-road"><span>North Avenue</span><b>LOW</b><span>Central Junction</span><b class="red">HIGH</b><span>Airport Road</span><b>MEDIUM</b></div></div></section>
-    <section id="parking" class="section"><div class="page-card"><h2>Smart Parking</h2><p>Monitor occupancy across connected parking zones.</p><div class="parking-grid"><div><strong>68%</strong><span>Overall occupancy</span></div><div><strong>1,426</strong><span>Spaces tracked</span></div><div><strong>457</strong><span>Spaces available</span></div></div></div></section>
-    <section id="safety" class="section"><div class="page-card"><h2>Public Safety</h2><p>Centralized incident and emergency monitoring.</p><div class="safety-row"><div class="safe">● 98.2% cameras online</div><div class="safe">● 14 emergency stations ready</div><div class="danger">! 2 incidents require review</div></div></div></section>
-    <section id="waste" class="section"><div class="page-card"><h2>Smart Waste</h2><p>Connected bins report fill levels for optimized collection.</p><div class="bin-grid"><div><strong>82%</strong><span>Zone A · route soon</span></div><div><strong>46%</strong><span>Zone B · normal</span></div><div><strong>91%</strong><span>Zone C · urgent</span></div></div></div></section>
-    <section id="energy" class="section"><div class="page-card"><h2>Energy Management</h2><p>Track consumption and identify unusual demand patterns.</p><canvas id="energyChart"></canvas></div></section>
-    <section id="devices" class="section"><div class="page-card"><div class="panel-head"><div><h2>IoT Device Network</h2><p>ESP32, cameras and sensor nodes connected to the platform.</p></div><span class="pill"><i></i> 1,248 online</span></div><table><thead><tr><th>DEVICE</th><th>ZONE</th><th>TYPE</th><th>STATUS</th><th>LAST UPDATE</th></tr></thead><tbody>
-      <tr><td>SC-TRF-204</td><td>Central</td><td>Traffic Sensor</td><td><b class="online">● Online</b></td><td>12 sec ago</td></tr>
-      <tr><td>SC-CAM-118</td><td>North</td><td>AI Camera</td><td><b class="online">● Online</b></td><td>18 sec ago</td></tr>
-      <tr><td>SC-PRK-077</td><td>Metro</td><td>Parking Node</td><td><b class="online">● Online</b></td><td>31 sec ago</td></tr>
-      <tr><td>SC-ENR-041</td><td>Zone 04</td><td>Energy Meter</td><td><b class="offline">● Warning</b></td><td>2 min ago</td></tr>
-    </tbody></table></div></section>
-  </main>
+  <div class="grid-2">
+    <div class="panel chart-panel"><div class="panel-head"><div><h3>City Activity</h3><span>Events from connected sensors · 24 hours</span></div><span class="live-badge"><i></i> LIVE</span></div><canvas id="activityChart"></canvas></div>
+    <div class="panel"><div class="panel-head"><div><h3>Priority Alerts</h3><span>Real-time incident queue</span></div><button class="link-btn" id="clearAlerts">Clear demo</button></div><div id="alertList">
+      <div class="alert critical"><b>⚠ Traffic congestion</b><span>Central Junction · 4 min ago</span><small>CRITICAL</small></div>
+      <div class="alert"><b>◉ AI camera event</b><span>North Zone · crowd density changed</span><small>REVIEW</small></div>
+      <div class="alert"><b>ϟ Energy anomaly</b><span>Zone 04 · demand above baseline</span><small>MONITOR</small></div>
+    </div></div>
+  </div>
+
+  <div class="grid-3 lower">
+    <div class="panel"><div class="panel-head"><div><h3>City Health</h3><span>Composite system score</span></div><strong class="score">94%</strong></div><div class="progress"><i style="width:94%"></i></div><div class="mini-row"><span>Mobility</span><b>92%</b></div><div class="mini-row"><span>Safety</span><b>97%</b></div><div class="mini-row"><span>Infrastructure</span><b>93%</b></div></div>
+    <div class="panel map-panel"><div class="panel-head"><div><h3>Live Operations Map</h3><span>Sensor activity</span></div><span class="map-key"><i></i> normal <i class="red-dot"></i> alert</span></div><div class="map"><span class="road a"></span><span class="road b"></span><span class="road c"></span><span class="map-pin p1"></span><span class="map-pin p2"></span><span class="map-pin p3 red"></span><span class="map-pin p4"></span></div></div>
+    <div class="panel"><div class="panel-head"><div><h3>AI Vision</h3><span>Camera intelligence</span></div><span class="live-badge"><i></i> AI</span></div><div class="ai-box"><div class="ai-icon">◉</div><strong>96.2%</strong><span>Detection confidence</span><div class="ai-tags"><b>Vehicle</b><b>People</b><b>Smoke</b><b>Incident</b></div></div></div>
+  </div>
+</section>
+
+<section id="traffic" class="section"><div class="section-head"><div><h2>Traffic AI</h2><p>Road intelligence from connected sensors and camera analytics.</p></div><span class="status-badge">● LIVE FEED</span></div><div class="metric-grid"><div class="big-card"><span>Mobility score</span><strong>72</strong><small>/ 100</small><em>▲ 4.2% today</em></div><div class="big-card"><span>Vehicles tracked</span><strong>84.2K</strong><em>last 24 hours</em></div><div class="big-card"><span>Congestion</span><strong>28%</strong><em>12% below baseline</em></div></div><div class="panel table-panel"><h3>Road Network</h3><table><thead><tr><th>ROAD</th><th>FLOW</th><th>SPEED</th><th>AI STATUS</th><th>ACTION</th></tr></thead><tbody><tr><td>Central Junction</td><td><div class="tinybar"><i style="width:88%"></i></div></td><td>18 km/h</td><td><b class="bad">● Congested</b></td><td><button class="row-btn">Optimize</button></td></tr><tr><td>North Avenue</td><td><div class="tinybar"><i style="width:42%"></i></div></td><td>44 km/h</td><td><b class="good">● Normal</b></td><td><button class="row-btn">View</button></td></tr><tr><td>Airport Road</td><td><div class="tinybar"><i style="width:63%"></i></div></td><td>32 km/h</td><td><b class="warn">● Medium</b></td><td><button class="row-btn">View</button></td></tr></tbody></table></div></section>
+
+<section id="parking" class="section"><div class="section-head"><div><h2>Smart Parking</h2><p>Occupancy, availability and zone-level parking intelligence.</p></div><span class="status-badge">● 1,426 SPACES</span></div><div class="metric-grid"><div class="big-card"><span>Occupancy</span><strong>68%</strong><em class="good">+4.2%</em></div><div class="big-card"><span>Available</span><strong>457</strong><em>spaces now</em></div><div class="big-card"><span>Prediction</span><strong>82%</strong><em>peak in 45 min</em></div></div><div class="grid-3"><div class="panel zone"><span>ZONE A</span><strong>82%</strong><div class="progress"><i style="width:82%"></i></div><small>Central Mall · 41 free</small></div><div class="panel zone"><span>ZONE B</span><strong>54%</strong><div class="progress"><i style="width:54%"></i></div><small>Metro Square · 126 free</small></div><div class="panel zone"><span>ZONE C</span><strong>91%</strong><div class="progress danger-progress"><i style="width:91%"></i></div><small>Market Road · 19 free</small></div></div></section>
+
+<section id="safety" class="section"><div class="section-head"><div><h2>Safety & AI Vision</h2><p>Camera events, emergency readiness and anomaly detection.</p></div><span class="status-badge">● 126 CAMERAS</span></div><div class="metric-grid"><div class="big-card"><span>Cameras online</span><strong>98.2%</strong><em class="good">stable</em></div><div class="big-card"><span>AI events today</span><strong>19</strong><em>3 require review</em></div><div class="big-card"><span>Response units</span><strong>32</strong><em class="good">ready</em></div></div><div class="panel"><h3>Recent AI Events</h3><div class="event-list"><div><b>Vehicle stopped unexpectedly</b><span>Camera CAM-118 · 2 min ago</span><strong>94%</strong></div><div><b>Crowd density increase</b><span>Station North · 8 min ago</span><strong>91%</strong></div><div><b>Smoke-like visual pattern</b><span>Industrial Zone · 17 min ago</span><strong class="warn">78%</strong></div></div></div></section>
+
+<section id="waste" class="section"><div class="section-head"><div><h2>Waste Network</h2><p>Connected bins and collection route intelligence.</p></div><span class="status-badge">● 382 BINS</span></div><div class="grid-3"><div class="panel waste-card"><span>ZONE A</span><strong>82%</strong><div class="progress"><i style="width:82%"></i></div><small>Collection recommended</small></div><div class="panel waste-card"><span>ZONE B</span><strong>46%</strong><div class="progress"><i style="width:46%"></i></div><small>Normal route</small></div><div class="panel waste-card danger-card"><span>ZONE C</span><strong>91%</strong><div class="progress danger-progress"><i style="width:91%"></i></div><small>Priority collection</small></div></div></section>
+
+<section id="energy" class="section"><div class="section-head"><div><h2>Energy Grid</h2><p>Demand, renewable generation and efficiency intelligence.</p></div><span class="status-badge">● GRID STABLE</span></div><div class="metric-grid"><div class="big-card"><span>Current demand</span><strong>68.4</strong><small>MW</small><em>−6.2% vs peak</em></div><div class="big-card"><span>Solar generation</span><strong>42.8</strong><small>MW</small><em class="good">▲ 12.4%</em></div><div class="big-card"><span>Energy saved</span><strong>18.6%</strong><em class="good">this month</em></div></div><div class="panel"><div class="panel-head"><div><h3>Demand vs Solar</h3><span>Last 7 days</span></div></div><canvas id="energyChart"></canvas></div></section>
+
+<section id="devices" class="section"><div class="section-head"><div><h2>IoT Fleet</h2><p>ESP32 nodes, cameras and smart infrastructure devices.</p></div><button class="primary" id="addDevice">+ Register demo device</button></div><div class="device-summary"><div><b>1,248</b><span>Total devices</span></div><div><b class="good">1,228</b><span>Online</span></div><div><b class="warn">14</b><span>Warning</span></div><div><b class="bad">6</b><span>Offline</span></div></div><div class="panel table-panel"><table><thead><tr><th>DEVICE</th><th>ZONE</th><th>TYPE</th><th>STATUS</th><th>LAST DATA</th><th>TELEMETRY</th></tr></thead><tbody id="deviceRows"><tr><td>SC-ESP32-204</td><td>Central</td><td>Traffic sensor</td><td><b class="good">● Online</b></td><td>12 sec</td><td>38°C · 62%</td></tr><tr><td>SC-CAM-118</td><td>North</td><td>AI camera</td><td><b class="good">● Online</b></td><td>18 sec</td><td>96.2% AI</td></tr><tr><td>SC-PRK-077</td><td>Metro</td><td>Parking node</td><td><b class="good">● Online</b></td><td>31 sec</td><td>54% full</td></tr><tr><td>SC-ENR-041</td><td>Zone 04</td><td>Energy meter</td><td><b class="warn">● Warning</b></td><td>2 min</td><td>+18% demand</td></tr></tbody></table></div></section>
+</main>
 </div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><h3>Smart City Search</h3><input id="searchInput" placeholder="Search devices, zones, alerts..." autofocus><div id="searchResults"></div></div></div>
 <script src="app.js"></script>
 </body>
 </html>
